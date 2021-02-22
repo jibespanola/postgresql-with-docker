@@ -1,0 +1,39 @@
+#Always need a version stated
+version: "3"
+
+services:
+  #Name of this service is "db"
+  db:
+    # Change to desired postgres version
+    # Official latest postgres image from DockerHub
+    image: postgres:latest
+    # Default psql port is 5432
+    # Syntax: [Machine port] : [Container Port]
+    # Ideally matching ports
+    ports:
+      - "5434:5434"
+    # If you want data to persist, pick between the two options
+    volumes:
+    #For bind mount, uncomment the line below
+    # - ./pgdata:/var/lib/postgresql/data
+    #For volume mount, uncomment the line below
+    # - pgdb_data:/var/lin/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test-db
+      POSTGRES_PASSWORD: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      #Replace with a username and a secure password
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+## Uncomment lines below if using volume mount.
+# volumes:
+#   pgdb_data:
+
