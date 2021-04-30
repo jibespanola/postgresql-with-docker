@@ -33,7 +33,7 @@ services:
       #Replace with a username and a secure password
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: password
-## Uncomment lines below if using volume mount.
+## Uncomment lines below if named volumes do not exist yet.
 # volumes:
 #   pgdb_data:
 
